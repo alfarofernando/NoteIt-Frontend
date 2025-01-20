@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext'; // Ruta a tu contexto de autenticación
 import AuthModal from '../components/AuthModal'; // Importamos el componente AuthModal
 import { motion } from 'framer-motion'; // Importamos Framer Motion
 import noteItLogo from "../assets/images/noteItLogo.webp";
+
+
 
 const Navbar = () => {
     const { user, login, logout, loading, register } = useContext(AuthContext);
@@ -12,6 +14,7 @@ const Navbar = () => {
     const [errorMessage, setErrorMessage] = useState(''); // Estado para manejar los errores
     const [successMessage, setSuccessMessage] = useState(''); // Estado para manejar mensajes de éxito
     const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar el menú hamburguesa
+    const navigate = useNavigate();
 
     const cleanFields = () => {
         setErrorMessage(""); // Limpia el mensaje de error
@@ -31,8 +34,9 @@ const Navbar = () => {
                 setSuccessMessage('Registro exitoso. Bienvenido!');
                 setTimeout(() => {
                     closeModal(); // Cierra el modal después del registro
+                    navigate("/active-notes");
                     cleanFields();
-                }, 2000);
+                }, 1000);
             }
         } catch (error) {
             setErrorMessage('No se pudo registrar correctamente. Intenta nuevamente.');
@@ -51,9 +55,10 @@ const Navbar = () => {
             if (loggedUser) {
                 setSuccessMessage('Usuario logueado con éxito!');
                 setTimeout(() => {
-                    closeModal(); // Cierra el modal después del login
+                    closeModal();
+                    navigate("/active-notes");
                     cleanFields();
-                }, 2000);
+                }, 1000);
             } else {
                 setErrorMessage('Credenciales incorrectas');
             }
