@@ -66,7 +66,6 @@ const Navbar = () => {
         setShowModal(false); // Función para cerrar el modal
     };
 
-
     return (
         <>
             <nav className="w-full flex justify-between items-center bg-amber-800 px-10 py-1 shadow-lg">
@@ -106,7 +105,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <button
-                            onClick={closeModal}
+                            onClick={() => setShowModal(true)} // Abrimos el modal al hacer clic
                             className="ml-4 hover:text-gray-300 transition duration-300 hover:scale-110"
                         >
                             Login To Start
