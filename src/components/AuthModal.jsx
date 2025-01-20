@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 
 const AuthModal = ({ isLogin, loading, handleLogin, handleRegister, errorMessage, successMessage, setIsLogin, setShowModal }) => {
-    const [username, setUsername] = useState('');
+    const [name, setname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [formError, setFormError] = useState('');
@@ -12,13 +12,13 @@ const AuthModal = ({ isLogin, loading, handleLogin, handleRegister, errorMessage
 
 
     const cleanFields = () => {
-        setUsername("");
+        setname("");
         setEmail("");
         setPassword("");
     };
 
     const handleRegisterClick = async () => {
-        if (!username || !email || !password) {
+        if (!name || !email || !password) {
             setFormError("Todos los campos son obligatorios");
             return;
         }
@@ -26,7 +26,7 @@ const AuthModal = ({ isLogin, loading, handleLogin, handleRegister, errorMessage
         setRegistrationMessage('');
 
         try {
-            const success = await handleRegister(username, email, password);
+            const success = await handleRegister(name, email, password);
             if (success) {
                 setRegistrationMessage('¡Registro exitoso!');
                 setIsRegistrationError(false);
@@ -120,13 +120,13 @@ const AuthModal = ({ isLogin, loading, handleLogin, handleRegister, errorMessage
                         ) : (
                             <>
                                 <div className="mb-4">
-                                    <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">name</label>
                                     <input
                                         type="text"
-                                        id="username"
-                                        placeholder="Username"
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
+                                        id="name"
+                                        placeholder="name"
+                                        value={name}
+                                        onChange={(e) => setname(e.target.value)}
                                         className="w-full p-2 mt-2 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500"
                                     />
                                 </div>
