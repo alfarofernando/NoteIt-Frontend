@@ -16,7 +16,7 @@ const useActiveNotes = (userId) => {
       setError(null);
 
       try {
-        const response = await axios.get('http://localhost:5000/notes/active', {
+        const response = await axios.get('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//notes/active', {
           params: { userId: userId },
         });
 

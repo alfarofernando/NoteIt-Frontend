@@ -13,7 +13,7 @@ const useDeleteNote = () => {
 
     try {
       // Realiza la solicitud DELETE con el userId en el cuerpo
-      const response = await axios.delete(`http://localhost:5000/notes/${id}`, {
+      const response = await axios.delete(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//notes/${id}`, {
         data: { userId },
       });
 

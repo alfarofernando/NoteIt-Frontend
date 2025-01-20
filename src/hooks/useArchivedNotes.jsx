@@ -13,7 +13,7 @@ const useArchivedNotes = (userId) => {
             setLoading(true);
             try {
                 // Aquí pasamos el userId como parámetro de consulta
-                const response = await axios.get(`http://localhost:5000/notes/archived?userId=${userId}`);
+                const response = await axios.get(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//notes/archived?userId=${userId}`);
                 setNotes(response.data);
             } catch (err) {
                 setError('Error al obtener notas archivadas');
