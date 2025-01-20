@@ -18,15 +18,15 @@ const Navbar = () => {
         setSuccessMessage(""); // Limpia el mensaje de éxito
     };
 
-    const handleRegister = async (username, email, password) => {
+    const handleRegister = async (name, email, password) => {
         setErrorMessage(''); // Limpiar errores previos
-        if (!username || !email || !password) {
+        if (!name || !email || !password) {
             setErrorMessage("Todos los campos son obligatorios");
             return;
         }
 
         try {
-            const response = await register(username, email, password); // Usamos la función register desde el contexto
+            const response = await register(name, email, password); // Usamos la función register desde el contexto
             if (response) {
                 setSuccessMessage('Registro exitoso. Bienvenido!');
                 setTimeout(() => {
