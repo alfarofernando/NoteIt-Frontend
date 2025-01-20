@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { AuthContext } from '../contexts/AuthContext';
 
-const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin, setShowModal }) => {
+const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin, closeModal }) => {
     const { register, login, error } = useContext(AuthContext);  // Usamos el contexto aquí
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -32,7 +32,7 @@ const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin,
                 setIsRegistrationError(false);
                 setTimeout(() => {
                     cleanFields();
-                    setShowModal(false);
+                    closeModal();
                 }, 1000);
             } else {
                 setRegistrationMessage('Hubo un problema con el registro.');
@@ -73,7 +73,7 @@ const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin,
                     <div className={`text-center ${isRegistrationError ? 'text-red-500' : 'text-green-500'}`}>
                         <h2 className="text-2xl font-semibold">{registrationMessage}</h2>
                         <button
-                            onClick={() => setShowModal(false)}
+                            onClick={closeModal}
                             className="mt-4 w-full p-2 bg-amber-800 text-white rounded-md"
                         >
                             Cerrar
@@ -176,7 +176,7 @@ const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin,
                         </div>
 
                         <motion.button
-                            onClick={() => setShowModal(false)}
+                            onClick={closeModal}
                             className="absolute top-2 right-2 text-gray-500 p-2 hover:bg-gray-200 rounded-full"
                             whileHover={{ scale: 1.2 }}
                             whileTap={{ scale: 0.9 }}

@@ -19,50 +19,53 @@ const Navbar = () => {
     };
 
     const handleRegister = async (name, email, password) => {
-        setErrorMessage(''); // Limpiar errores previos
+        setErrorMessage('');
         if (!name || !email || !password) {
             setErrorMessage("Todos los campos son obligatorios");
             return;
         }
 
         try {
-            const response = await register(name, email, password); // Usamos la función register desde el contexto
+            const response = await register(name, email, password);
             if (response) {
                 setSuccessMessage('Registro exitoso. Bienvenido!');
                 setTimeout(() => {
-                    setShowModal(false); // Cierra el modal después de mostrar el mensaje
-                    cleanFields(); // Limpia los campos después de un registro exitoso
+                    closeModal(); // Cierra el modal después del registro
+                    cleanFields();
                 }, 2000);
             }
         } catch (error) {
-            console.error('Error en el registro:', error);
             setErrorMessage('No se pudo registrar correctamente. Intenta nuevamente.');
         }
     };
 
     const handleLogin = async (email, password) => {
-        setErrorMessage(''); // Limpiar errores previos
+        setErrorMessage('');
         if (!email || !password) {
             setErrorMessage("Todos los campos son obligatorios");
             return;
         }
 
         try {
-            const loggedUser = await login(email, password);  // Aquí se realiza el login
+            const loggedUser = await login(email, password);
             if (loggedUser) {
                 setSuccessMessage('Usuario logueado con éxito!');
                 setTimeout(() => {
-                    setShowModal(false);  // Cierra el modal después de mostrar el mensaje
-                    cleanFields();  // Limpia los campos después de un login exitoso
+                    closeModal(); // Cierra el modal después del login
+                    cleanFields();
                 }, 2000);
             } else {
                 setErrorMessage('Credenciales incorrectas');
             }
         } catch (error) {
             setErrorMessage('Error al iniciar sesión. Intenta nuevamente.');
-            console.error('Error al iniciar sesión:', error);
         }
     };
+
+    const closeModal = () => {
+        setShowModal(false); // Función para cerrar el modal
+    };
+
 
     return (
         <>
@@ -103,7 +106,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <button
-                            onClick={() => setShowModal(true)}
+                            onClick={closeModal}
                             className="ml-4 hover:text-gray-300 transition duration-300 hover:scale-110"
                         >
                             Login To Start
@@ -193,7 +196,7 @@ const Navbar = () => {
                         setIsLogin={setIsLogin}
                         login={handleLogin}
                         register={handleRegister}
-                        closeModal={() => setShowModal(false)}
+                        closeModal={closeModal}
                         errorMessage={errorMessage}
                         successMessage={successMessage}
                     />
