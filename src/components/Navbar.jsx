@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext'; // Ruta a tu contexto de autenticación
-import AuthModal from '../contexts/AuthModal'; // Importamos el componente AuthModal
+import AuthModal from '../components/AuthModal'; // Importamos el componente AuthModal
 import { motion } from 'framer-motion'; // Importamos Framer Motion
 import noteItLogo from "../assets/images/noteItLogo.webp";
 
