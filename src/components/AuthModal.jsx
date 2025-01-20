@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
+import { AuthContext } from './AuthContext';  // Importa el contexto
 
-
-const AuthModal = ({ isLogin, loading, handleLogin, handleRegister, errorMessage, successMessage, setIsLogin, setShowModal }) => {
-    const [name, setname] = useState('');
+const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin, setShowModal }) => {
+    const { register, login, error } = useContext(AuthContext);  // Usamos el contexto aquí
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [formError, setFormError] = useState('');
     const [registrationMessage, setRegistrationMessage] = useState('');
     const [isRegistrationError, setIsRegistrationError] = useState(false);
 
-
     const cleanFields = () => {
-        setname("");
+        setName("");
         setEmail("");
         setPassword("");
     };
@@ -26,7 +26,7 @@ const AuthModal = ({ isLogin, loading, handleLogin, handleRegister, errorMessage
         setRegistrationMessage('');
 
         try {
-            const success = await handleRegister(name, email, password);
+            const success = await register(name, email, password);
             if (success) {
                 setRegistrationMessage('¡Registro exitoso!');
                 setIsRegistrationError(false);
@@ -50,7 +50,7 @@ const AuthModal = ({ isLogin, loading, handleLogin, handleRegister, errorMessage
             return;
         }
         setFormError('');
-        await handleLogin(email, password);
+        await login(email, password);
     };
 
     return (
@@ -120,13 +120,13 @@ const AuthModal = ({ isLogin, loading, handleLogin, handleRegister, errorMessage
                         ) : (
                             <>
                                 <div className="mb-4">
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">name</label>
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
                                     <input
                                         type="text"
                                         id="name"
-                                        placeholder="name"
+                                        placeholder="Name"
                                         value={name}
-                                        onChange={(e) => setname(e.target.value)}
+                                        onChange={(e) => setName(e.target.value)}
                                         className="w-full p-2 mt-2 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500"
                                     />
                                 </div>

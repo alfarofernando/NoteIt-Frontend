@@ -22,10 +22,14 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
     }, []);
 
-    const register = async (username, email, password) => {
+    const register = async (name, email, password) => {
         setError(null);
         try {
-            const response = await axios.post('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/user/register', { username, email, password });
+
+            const response = await axios.post(
+                'https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/user/register',
+                { name, email, password }
+            );
             const { user } = response.data;
             localStorage.setItem('user', JSON.stringify(user));
             setUser(user);
@@ -33,6 +37,7 @@ const AuthProvider = ({ children }) => {
             setError('Error al registrar: ' + (err.response?.data?.message || err.message));
         }
     };
+
 
     const login = async (email, password) => {
         try {
