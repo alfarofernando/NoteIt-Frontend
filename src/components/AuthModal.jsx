@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
-import { AuthContext } from './AuthContext';  // Importa el contexto
+import { AuthContext } from '../contexts/AuthContext';
 
 const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin, setShowModal }) => {
     const { register, login, error } = useContext(AuthContext);  // Usamos el contexto aquí
