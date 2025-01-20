@@ -26,9 +26,9 @@ const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin,
         setRegistrationMessage('');
 
         try {
-            const success = await register(name, email, password);
-            if (success) {
-                setRegistrationMessage('¡Registro exitoso!');
+            const successMessage = await register(name, email, password);
+            if (successMessage) {
+                setRegistrationMessage(successMessage); // Mostramos el mensaje de éxito
                 setIsRegistrationError(false);
                 setTimeout(() => {
                     cleanFields();
@@ -43,6 +43,7 @@ const AuthModal = ({ isLogin, loading, errorMessage, successMessage, setIsLogin,
             setIsRegistrationError(true);
         }
     };
+
 
     const handleLoginClick = async () => {
         if (!email || !password) {

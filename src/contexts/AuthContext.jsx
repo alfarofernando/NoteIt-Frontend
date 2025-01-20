@@ -24,12 +24,16 @@ const AuthProvider = ({ children }) => {
                 'https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/user/register',
                 { name, email, password }
             );
-            const { user } = response.data;
-            setUser(user);
+            if (response.status === 201) {
+                setUser(response.data.user);
+                return '¡Registro exitoso!';
+            }
         } catch (err) {
             setError('Error al registrar: ' + (err.response?.data?.message || err.message));
+            return null;
         }
     };
+
 
     const login = async (email, password) => {
         try {
