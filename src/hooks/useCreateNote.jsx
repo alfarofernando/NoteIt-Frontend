@@ -23,7 +23,7 @@ const useCreateNote = () => {
     setLoading(true);
     try {
       // Enviar todo a la misma ruta de la API para crear la nota, categorías y etiquetas
-      const response = await fetch('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//notes', {
+      const response = await fetch('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

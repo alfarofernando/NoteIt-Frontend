@@ -21,7 +21,7 @@ const UpdateNote = () => {
     useEffect(() => {
         const fetchNote = async () => {
             try {
-                const response = await axios.get(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//notes/${id}`);
+                const response = await axios.get(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes/${id}`);
                 const { title, content, categories, tags } = response.data;
                 setTitle(title);
                 setContent(content);
@@ -73,7 +73,7 @@ const UpdateNote = () => {
                 userId: user.id,  // Asegurándonos de enviar el userId
             };
             console.log("id de la nota", id);
-            const response = await axios.put(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//notes/${id}`, updatedNote);
+            const response = await axios.put(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes/${id}`, updatedNote);
             setSuccess('Note updated successfully!');
             navigate('/'); // Redirige al usuario después de la actualización
         } catch (err) {

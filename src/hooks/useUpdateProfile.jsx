@@ -33,7 +33,7 @@ const useUpdateProfile = (user) => {
 
         try {
             const response = await axios.put(
-                'https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//user/update',
+                'https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/user/update',
                 {
                     name: formData.name,
                     currentPassword: formData.currentPassword,

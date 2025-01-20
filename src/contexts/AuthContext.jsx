@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
     const register = async (username, email, password) => {
         setError(null);
         try {
-            const response = await axios.post('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//user/register', { username, email, password });
+            const response = await axios.post('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/user/register', { username, email, password });
             const { user } = response.data;
             localStorage.setItem('user', JSON.stringify(user));
             setUser(user);
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await axios.post('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//login', { email, password });
+            const response = await axios.post('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/login', { email, password });
             if (response.data && response.data.user) {
                 const { user } = response.data;
                 localStorage.setItem('user', JSON.stringify(user));
