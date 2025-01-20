@@ -19,7 +19,7 @@ const useUpdateNote = (noteId) => {
                 userId,
             };
 
-            await axios.put(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//notes/${noteId}`, updatedNote);
+            await axios.put(`http://localhost:5000/notes/${noteId}`, updatedNote);
             setSuccess('Note updated successfully');
         } catch (err) {
             setError(err.response?.data?.message || 'Error updating note');

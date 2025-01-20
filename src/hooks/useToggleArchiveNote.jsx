@@ -13,7 +13,7 @@ const useToggleArchiveNote = () => {
 
     try {
       // Realiza la solicitud PUT para alternar el estado archivado
-      const response = await axios.put(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com//notes/${id}/archive`);
+      const response = await axios.put(`http://localhost:5000/notes/${id}/archive`);
 
       if (response.status === 200 && response.data?.note) {
         // Si la respuesta es correcta, actualiza el estado en el componente
