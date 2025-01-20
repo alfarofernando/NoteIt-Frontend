@@ -77,9 +77,8 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-
                 {/* Menu normal */}
-                <div className="text-white text-2xl items-center space-x-6 hidden md:flex ">
+                <div className="text-white text-2xl items-center space-x-6 hidden md:flex">
                     {user ? (
                         <>
                             {/* Enlaces de Active Notes, Archived Notes y Profile */}
@@ -187,18 +186,16 @@ const Navbar = () => {
                 </motion.div>
             )}
 
-
             {
                 showModal && (
                     <AuthModal
                         isLogin={isLogin}
-                        loading={loading}
-                        handleLogin={handleLogin}
-                        handleRegister={handleRegister}
+                        setIsLogin={setIsLogin}
+                        login={handleLogin}
+                        register={handleRegister}
+                        closeModal={() => setShowModal(false)}
                         errorMessage={errorMessage}
                         successMessage={successMessage}
-                        setIsLogin={setIsLogin}
-                        setShowModal={setShowModal}
                     />
                 )
             }

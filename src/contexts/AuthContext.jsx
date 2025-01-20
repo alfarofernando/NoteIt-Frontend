@@ -1,4 +1,3 @@
-// AuthContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -9,15 +8,11 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Recargar el usuario de localStorage al iniciar
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
-            try {
-                const parsedUser = JSON.parse(storedUser);
-                setUser(parsedUser);
-            } catch (err) {
-                console.error("Error al parsear el usuario desde localStorage:", err);
-            }
+            setUser(JSON.parse(storedUser));
         }
         setLoading(false);
     }, []);
@@ -25,27 +20,25 @@ const AuthProvider = ({ children }) => {
     const register = async (name, email, password) => {
         setError(null);
         try {
-
             const response = await axios.post(
                 'https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/user/register',
                 { name, email, password }
             );
             const { user } = response.data;
-            localStorage.setItem('user', JSON.stringify(user));
             setUser(user);
         } catch (err) {
             setError('Error al registrar: ' + (err.response?.data?.message || err.message));
         }
     };
 
-
     const login = async (email, password) => {
         try {
             const response = await axios.post('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/login', { email, password });
             if (response.data && response.data.user) {
                 const { user } = response.data;
-                localStorage.setItem('user', JSON.stringify(user));
                 setUser(user);
+                // Guardamos el usuario en localStorage para persistencia
+                localStorage.setItem('user', JSON.stringify(user));
                 return user;
             } else {
                 return null;
@@ -57,8 +50,9 @@ const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        localStorage.removeItem('user');
         setUser(null);
+        // Limpiamos el usuario de localStorage al cerrar sesión
+        localStorage.removeItem('user');
     };
 
     return (
