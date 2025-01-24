@@ -38,23 +38,9 @@ const HomePage = () => {
         <div className="flex flex-col items-center justify-center">
 
             {/* Título */}
-            <div className="flex justify-center p-4 mb-1 w-full h-full   gap-10  text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800  bg-contain bg-center bg-no-repeat">
-                <span
-                    className="flex justify-center w-3/12 h-3/12 pt-12 "
-                    style={{
-                        backgroundImage: `url(${homeNote})`,
-                    }}
-                >
-                    Start writing
-                </span>
-                <span
-                    className="flex justify-center w-3/12 h-3/12 pt-12"
-                    style={{
-                        backgroundImage: `url(${homeNote})`,
-                    }}
-                >
-                    what matters
-                </span>
+            <div className="flex justify-center gap-10  text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 ">
+                <span>Start writing</span>
+                <span>what matters</span>
             </div>
 
 
