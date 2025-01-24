@@ -81,7 +81,7 @@ const NoteDetail = () => {
         )}
 
         {/* Botones de acción */}
-        <div className="flex text-lg space-x-4 mt-4">
+        <div className="flex text-lg space-x-1 mt-4">
           <button
             onClick={handleUpdate}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors"
@@ -90,7 +90,7 @@ const NoteDetail = () => {
           </button>
           <button
             onClick={handleArchive}
-            disabled={archiveLoading} // Deshabilitar mientras se carga
+            disabled={archiveLoading}
             className={`px-6 py-2 ${archiveLoading
               ? 'bg-yellow-300'
               : note.archived

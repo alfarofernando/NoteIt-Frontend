@@ -49,12 +49,7 @@ const ProfilePage = () => {
             email: formData.email,
             password: formData.newPassword || undefined,
         };
-
-        console.log("Enviando payload:", payload); // Agregar log del payload
-
         await updateUser(payload, setUser); // Aquí pasamos setUser para actualizar el estado
-
-        console.log("Estado después de actualizar:", { success, error }); // Log del estado después de la actualización
 
         if (success) {
             alert("Perfil actualizado con éxito.");

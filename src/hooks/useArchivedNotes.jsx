@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+
 
 const useArchivedNotes = (userId) => {
     const [notes, setNotes] = useState([]);
@@ -8,12 +10,11 @@ const useArchivedNotes = (userId) => {
 
     useEffect(() => {
         const fetchArchivedNotes = async () => {
-            if (!userId) return; // Verifica si hay un userId antes de hacer la solicitud
+            if (!userId) return; //
 
             setLoading(true);
             try {
-                // Aquí pasamos el userId como parámetro de consulta
-                const response = await axios.get(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes/archived?userId=${userId}`);
+                const response = await axios.get(`${URL_DEV}/notes/archived?userId=${userId}`);
                 setNotes(response.data);
             } catch (err) {
                 setError('Error al obtener notas archivadas');
@@ -23,7 +24,7 @@ const useArchivedNotes = (userId) => {
         };
 
         fetchArchivedNotes();
-    }, [userId]); // Vuelve a ejecutar el efecto cuando el userId cambie
+    }, [userId]);
 
     return { notes, loading, error };
 };

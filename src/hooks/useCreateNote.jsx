@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+
 
 const useCreateNote = () => {
   const [title, setTitle] = useState('');
@@ -23,7 +25,7 @@ const useCreateNote = () => {
     setLoading(true);
     try {
       // Enviar todo a la misma ruta de la API para crear la nota, categorías y etiquetas
-      const response = await fetch('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes', {
+      const response = await fetch(`${URL_DEV}/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

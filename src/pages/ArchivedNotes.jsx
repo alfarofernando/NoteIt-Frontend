@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Select from 'react-select';
 import { ClipLoader } from 'react-spinners';
 
-
 const ArchivedNotes = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -19,12 +18,12 @@ const ArchivedNotes = () => {
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    // Filtrado de notas
     const orderOptions = [
         { label: 'Newest', value: 'newest' },
         { label: 'Oldest', value: 'oldest' },
     ];
 
-    // Filtrado de notas
     const filteredNotes = useMemo(() => {
         let notesToDisplay = [...notes];
 
@@ -62,17 +61,24 @@ const ArchivedNotes = () => {
         navigate(`/note/${note.id}`, { state: { note } });
     };
 
-    const tagOptions = notes
-        .map((note) => note.tags)
-        .flat()
-        .filter((tag, index, self) => self.findIndex((t) => t.id === tag.id) === index)
-        .map((tag) => ({ label: tag.name, value: tag.id }));
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
-    const categoryOptions = notes
-        .map((note) => note.categories)
-        .flat()
-        .filter((category, index, self) => self.findIndex((c) => c.id === category.id) === index)
-        .map((category) => ({ label: category.name, value: category.id }));
+    const tagOptions = useMemo(() => {
+        return notes
+            .flatMap(note => note.tags || [])
+            .filter((tag, index, self) => self.findIndex(t => t.id === tag.id) === index)
+            .map(tag => ({ label: tag.name, value: tag.id }));
+    }, [notes]);
+
+    const categoryOptions = useMemo(() => {
+        return notes
+            .flatMap(note => note.categories || [])
+            .filter((category, index, self) => self.findIndex(c => c.id === category.id) === index)
+            .map(category => ({ label: category.name, value: category.id }));
+    }, [notes]);
+
 
     if (loading) {
         return (
@@ -107,7 +113,7 @@ const ArchivedNotes = () => {
                             <input
                                 type="text"
                                 value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onChange={handleSearchChange}
                                 placeholder="Search by name"
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
@@ -142,7 +148,7 @@ const ArchivedNotes = () => {
                     <input
                         type="text"
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onChange={handleSearchChange}
                         placeholder="Search by name"
                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />

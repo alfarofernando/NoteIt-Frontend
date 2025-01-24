@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+
 
 const useActiveNotes = (userId) => {
   const [notes, setNotes] = useState([]); // Estado para las notas activas
@@ -8,15 +10,11 @@ const useActiveNotes = (userId) => {
 
   useEffect(() => {
     const fetchActiveNotes = async () => {
-      if (!userId) {
-        setError('Por favor, inicia sesión para ver tus notas.');
-        return;
-      }
       setLoading(true);
       setError(null);
 
       try {
-        const response = await axios.get('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes/active', {
+        const response = await axios.get(`${URL_DEV}/notes/active`, {
           params: { userId: userId },
         });
 

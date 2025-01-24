@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { URL_PROD, URL_DEV } from '../config/UrlBackend';
 
 const AuthContext = createContext();
 
@@ -21,7 +22,7 @@ const AuthProvider = ({ children }) => {
         setError(null);
         try {
             const response = await axios.post(
-                'https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/user/register',
+                `${URL_DEV}/user/register`,
                 { name, email, password }
             );
             if (response.status === 201) {
@@ -37,7 +38,7 @@ const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await axios.post('https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/login', { email, password });
+            const response = await axios.post(`${URL_DEV}/login`, { email, password });
             if (response.data && response.data.user) {
                 const { user } = response.data;
                 setUser(user);

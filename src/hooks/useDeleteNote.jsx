@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+
 
 const useDeleteNote = () => {
   const [loading, setLoading] = useState(false); // Estado de carga
@@ -13,7 +15,7 @@ const useDeleteNote = () => {
 
     try {
       // Realiza la solicitud DELETE con el userId en el cuerpo
-      const response = await axios.delete(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes/${id}`, {
+      const response = await axios.delete(`${URL_DEV}/notes/${id}`, {
         data: { userId },
       });
 

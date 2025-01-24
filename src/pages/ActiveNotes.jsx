@@ -6,6 +6,7 @@ import NoteCard from '../components/NoteCard';
 import { motion, AnimatePresence } from 'framer-motion';
 import Select from 'react-select';
 import { ClipLoader } from 'react-spinners';
+import newNoteImage from "../assets/images/newNoteImage.webp";
 
 const ActiveNotes = () => {
   const { user } = useContext(AuthContext);
@@ -93,9 +94,15 @@ const ActiveNotes = () => {
       <div className="flex items-center justify-between mb-8 space-x-4">
         <button
           onClick={handleCreateNote}
-          className="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition"
+          className=" py-4 px-10 brightness-75 hover:brightness-100 hover:scale-110 duration-300 ease-in-out "
+          style={{
+            backgroundImage: `url(${newNoteImage})`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: "no-repeat",
+          }}
         >
-          + New Note
+          <span className="text-white">New</span>
         </button>
         <h1 className="text-4xl font-semibold text-gray-800 flex-grow text-center">Active Notes</h1>
         <button
@@ -187,28 +194,30 @@ const ActiveNotes = () => {
           />
         </div>
       </div>
-      {filteredNotes.length === 0 ? (
-        <p className="text-center text-lg text-gray-600">You don't have any active notes yet.</p>
-      ) : (
-        <div className="notes-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
-            {filteredNotes.map((note) => (
-              <motion.div
-                key={note.id}
-                className="note-card cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                onClick={() => navigate(`/note/${note.id}`, { state: { note } })}
-              >
-                <NoteCard note={note} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-      )}
-    </div>
+      {
+        filteredNotes.length === 0 ? (
+          <p className="text-center text-lg text-gray-600">You don't have any active notes yet.</p>
+        ) : (
+          <div className="notes-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence>
+              {filteredNotes.map((note) => (
+                <motion.div
+                  key={note.id}
+                  className="note-card cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => navigate(`/note/${note.id}`, { state: { note } })}
+                >
+                  <NoteCard note={note} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        )
+      }
+    </div >
   );
 };
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { URL_PROD, URL_DEV } from '../config/UrlBackend';
 
 const useUpdateNote = (noteId) => {
     const [note, setNote] = useState(null);
@@ -19,7 +20,7 @@ const useUpdateNote = (noteId) => {
                 userId,
             };
 
-            await axios.put(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes/${noteId}`, updatedNote);
+            await axios.put(`${URL_DEV}/notes/${noteId}`, updatedNote);
             setSuccess('Note updated successfully');
         } catch (err) {
             setError(err.response?.data?.message || 'Error updating note');

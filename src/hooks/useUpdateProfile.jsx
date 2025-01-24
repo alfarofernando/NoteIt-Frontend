@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { URL_PROD, URL_DEV } from '../config/UrlBackend';
 
 const useUpdateProfile = (user) => {
     const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ const useUpdateProfile = (user) => {
 
         try {
             const response = await axios.put(
-                'https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/user/update',
+                `${URL_DEV}/user/update`,
                 {
                     name: formData.name,
                     currentPassword: formData.currentPassword,

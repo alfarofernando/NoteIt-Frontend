@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import useCreateNote from '../hooks/useCreateNote';
+import { useNavigate } from 'react-router-dom';
 
 const CreateNote = () => {
   const { handleSubmit, title, setTitle, content, setContent, categoryNames, setCategoryNames, tagNames, setTagNames, loading, error, success } = useCreateNote();
@@ -9,6 +10,7 @@ const CreateNote = () => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleAddCategory = () => {
     if (categoryName && !categories.includes(categoryName)) {
@@ -171,6 +173,7 @@ const CreateNote = () => {
         </form>
         {error && <div className="mt-4 text-red-600">{error}</div>}
         {success && <div className="mt-4 text-green-600">{success}</div>}
+        {success && navigate("/active-notes")}
       </div>
     </div>
   );

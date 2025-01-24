@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+
 
 const useToggleArchiveNote = () => {
   const [loading, setLoading] = useState(false); // Estado de carga
@@ -13,7 +15,7 @@ const useToggleArchiveNote = () => {
 
     try {
       // Realiza la solicitud PUT para alternar el estado archivado
-      const response = await axios.put(`https://ancient-sierra-88614-5721e3ef19cd.herokuapp.com/notes/${id}/archive`);
+      const response = await axios.put(`${URL_DEV}/notes/${id}/archive`);
 
       if (response.status === 200 && response.data?.note) {
         // Si la respuesta es correcta, actualiza el estado en el componente
