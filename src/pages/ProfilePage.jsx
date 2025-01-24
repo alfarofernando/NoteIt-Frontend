@@ -87,15 +87,15 @@ const ProfilePage = () => {
                 <p className="text-center text-lg italic mb-6">{randomQuote}</p>
             </div>
             <div className="max-w-md mx-auto mb-2 p-6 border w-[95%] rounded-lg shadow-lg">
-                <h2 className="text-2xl font-semibold text-center mb-4">Editar Perfil</h2>
+                <h2 className="text-2xl font-semibold text-center mb-4">Profile</h2>
 
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-                {success && <p className="text-green-500 text-center mb-4">Perfil actualizado con éxito.</p>}
+                {success && <p className="text-green-500 text-center mb-4">Profile updated succesfully</p>}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Sección: Nombre */}
                     <section>
-                        <h3 className="text-xl font-medium text-gray-700 mb-2">Nombre de Usuario</h3>
+                        <h3 className="text-xl font-medium text-gray-700 mb-2">Username</h3>
                         <input
                             type="text"
                             id="name"
@@ -108,7 +108,7 @@ const ProfilePage = () => {
 
                     {/* Sección: Correo Electrónico */}
                     <section>
-                        <h3 className="text-xl font-medium text-gray-700 mb-2">Correo Electrónico</h3>
+                        <h3 className="text-xl font-medium text-gray-700 mb-2">Email</h3>
                         <input
                             type="email"
                             id="email"
@@ -121,7 +121,7 @@ const ProfilePage = () => {
 
                     {/* Sección: Contraseña */}
                     <section>
-                        <h3 className="text-xl font-medium text-gray-700 mb-2">Contraseña</h3>
+                        <h3 className="text-xl font-medium text-gray-700 mb-2">Password</h3>
                         <div className="space-y-4">
                             <input
                                 type="password"
@@ -129,12 +129,12 @@ const ProfilePage = () => {
                                 name="currentPassword"
                                 value={formData.currentPassword}
                                 onChange={handleChange}
-                                placeholder="Contraseña actual"
+                                placeholder="Actual password"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md"
                             />
                             {/* Leyenda explicativa para una contraseña fuerte */}
                             <p className="text-sm text-gray-600">
-                                La contraseña debe incluir al menos 8 caracteres, una letra mayúscula, una minúscula, un número y un símbolo !@#$%^&*()_-=+{ }[]:|\;"'<>,.?/</>
+                                Password must contain at least 8 characters. one lowcase letter, one uppercase letter, one number and one simbol !@#$%^&*()_-=+{ }[]:|\;"'<>,.?/</>
                             </p>
                             {/* Medidor de contraseña */}
                             <div className="flex justify-between">
@@ -150,7 +150,7 @@ const ProfilePage = () => {
                                 name="newPassword"
                                 value={formData.newPassword}
                                 onChange={handleChange}
-                                placeholder="Nueva contraseña"
+                                placeholder="New password"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md"
                             />
 
@@ -161,7 +161,7 @@ const ProfilePage = () => {
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
-                                placeholder="Confirmar nueva contraseña"
+                                placeholder="Confirm new password"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md"
                             />
 
@@ -173,7 +173,7 @@ const ProfilePage = () => {
                         className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                         disabled={isLoading}
                     >
-                        {isLoading ? "Actualizando..." : "Actualizar perfil"}
+                        {isLoading ? "Updating..." : "Update Profile"}
                     </button>
                 </form>
 
@@ -181,7 +181,7 @@ const ProfilePage = () => {
                     onClick={logout}
                     className="w-full mt-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
                 >
-                    Cerrar sesión
+                    Close Session
                 </button>
             </div>
         </>
