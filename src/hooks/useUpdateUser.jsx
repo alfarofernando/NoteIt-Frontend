@@ -1,7 +1,7 @@
 // useUpdateUser.js
 import { useState } from "react";
 import axios from "axios";
-import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+import { URL_PROD, URL_PROD } from '../config/UrlBackend';
 
 const useUpdateUser = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ const useUpdateUser = () => {
         console.log("Actualizando usuario con datos:", { id, name, email, password });
 
         try {
-            const response = await axios.put(`${URL_DEV}/user/update/${id}`, { name, email, password });
+            const response = await axios.put(`${URL_PROD}/user/update/${id}`, { name, email, password });
             console.log("Respuesta del backend:", response);
 
             if (response.status === 200) {

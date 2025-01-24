@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+import { URL_PROD, URL_PROD } from '../config/UrlBackend';
 
 
 const useActiveNotes = (userId) => {
@@ -14,7 +14,7 @@ const useActiveNotes = (userId) => {
       setError(null);
 
       try {
-        const response = await axios.get(`${URL_DEV}/notes/active`, {
+        const response = await axios.get(`${URL_PROD}/notes/active`, {
           params: { userId: userId },
         });
 

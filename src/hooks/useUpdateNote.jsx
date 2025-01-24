@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+import { URL_PROD, URL_PROD } from '../config/UrlBackend';
 
 const useUpdateNote = (noteId) => {
     const [note, setNote] = useState(null);
@@ -20,7 +20,7 @@ const useUpdateNote = (noteId) => {
                 userId,
             };
 
-            await axios.put(`${URL_DEV}/notes/${noteId}`, updatedNote);
+            await axios.put(`${URL_PROD}/notes/${noteId}`, updatedNote);
             setSuccess('Note updated successfully');
         } catch (err) {
             setError(err.response?.data?.message || 'Error updating note');

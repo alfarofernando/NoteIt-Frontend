@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+import { URL_PROD, URL_PROD } from '../config/UrlBackend';
 
 
 const UpdateNote = () => {
@@ -23,7 +23,7 @@ const UpdateNote = () => {
     useEffect(() => {
         const fetchNote = async () => {
             try {
-                const response = await axios.get(`${URL_DEV}/notes/${id}`);
+                const response = await axios.get(`${URL_PROD}/notes/${id}`);
                 const { title, content, categories, tags } = response.data;
                 setTitle(title);
                 setContent(content);
@@ -75,7 +75,7 @@ const UpdateNote = () => {
                 userId: user.id,  // Asegurándonos de enviar el userId
             };
             console.log("id de la nota", id);
-            const response = await axios.put(`${URL_DEV}/notes/${id}`, updatedNote);
+            const response = await axios.put(`${URL_PROD}/notes/${id}`, updatedNote);
             setSuccess('Note updated successfully!');
             navigate('/'); // Redirige al usuario después de la actualización
         } catch (err) {

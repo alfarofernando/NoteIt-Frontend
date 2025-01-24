@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+import { URL_PROD, URL_PROD } from '../config/UrlBackend';
 
 const useUpdateProfile = (user) => {
     const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ const useUpdateProfile = (user) => {
 
         try {
             const response = await axios.put(
-                `${URL_DEV}/user/update`,
+                `${URL_PROD}/user/update`,
                 {
                     name: formData.name,
                     currentPassword: formData.currentPassword,

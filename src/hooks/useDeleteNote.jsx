@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+import { URL_PROD, URL_PROD } from '../config/UrlBackend';
 
 
 const useDeleteNote = () => {
@@ -15,7 +15,7 @@ const useDeleteNote = () => {
 
     try {
       // Realiza la solicitud DELETE con el userId en el cuerpo
-      const response = await axios.delete(`${URL_DEV}/notes/${id}`, {
+      const response = await axios.delete(`${URL_PROD}/notes/${id}`, {
         data: { userId },
       });
 

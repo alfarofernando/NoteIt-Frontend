@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+import { URL_PROD, URL_PROD } from '../config/UrlBackend';
 
 
 const useCreateNote = () => {
@@ -25,7 +25,7 @@ const useCreateNote = () => {
     setLoading(true);
     try {
       // Enviar todo a la misma ruta de la API para crear la nota, categorías y etiquetas
-      const response = await fetch(`${URL_DEV}/notes`, {
+      const response = await fetch(`${URL_PROD}/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

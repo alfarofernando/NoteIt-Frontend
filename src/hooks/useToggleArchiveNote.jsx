@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { URL_PROD, URL_DEV } from '../config/UrlBackend';
+import { URL_PROD, URL_PROD } from '../config/UrlBackend';
 
 
 const useToggleArchiveNote = () => {
@@ -15,7 +15,7 @@ const useToggleArchiveNote = () => {
 
     try {
       // Realiza la solicitud PUT para alternar el estado archivado
-      const response = await axios.put(`${URL_DEV}/notes/${id}/archive`);
+      const response = await axios.put(`${URL_PROD}/notes/${id}/archive`);
 
       if (response.status === 200 && response.data?.note) {
         // Si la respuesta es correcta, actualiza el estado en el componente
