@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { URL_PROD, URL_PROD } from '../config/UrlBackend';
+import { URL_PROD } from '../config/UrlBackend';
 
 
 const UpdateNote = () => {

@@ -1,7 +1,7 @@
 // useUpdateUser.js
 import { useState } from "react";
 import axios from "axios";
-import { URL_PROD, URL_PROD } from '../config/UrlBackend';
+import { URL_PROD } from '../config/UrlBackend';
 
 const useUpdateUser = () => {
     const [isLoading, setIsLoading] = useState(false);

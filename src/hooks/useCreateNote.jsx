@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { URL_PROD, URL_PROD } from '../config/UrlBackend';
+import { URL_PROD } from '../config/UrlBackend';
 
 
 const useCreateNote = () => {
